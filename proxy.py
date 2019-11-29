@@ -1,7 +1,18 @@
 import flask
 import subprocess
+import os
+from flask import request
 
 proxy = flask.Flask(__name__)
+
+def add_cors_headers(response):
+    response.headers['Access-Control-Allow-Origin'] = '*'
+    if request.method == 'OPTIONS':
+        response.headers['Access-Control-Allow-Methods'] = 'DELETE, GET, POST, PUT'
+        headers = request.headers.get('Access-Control-Request-Headers')
+        if headers:
+            response.headers['Access-Control-Allow-Headers'] = headers
+    return response
 
 @proxy.route("/init", methods=[ "POST" ])
 def init():
@@ -20,6 +31,7 @@ def run():
 
         with open("/root/dos/INPUT.STR", "w") as fp:
             fp.write("\"%s\"\n" % input_string)
+            print(input_string)
 
         subprocess.call([
             "dosbox", "./PRINT.EXE", "-c", "C:\\QBASIC.EXE /run C:\\PRIME.BAS > C:\\LOG.TXT", "-exit"
@@ -27,13 +39,11 @@ def run():
 
         output = "???"
 
-        try:
-            with open("/root/dos/LOG.TXT", "r") as fp:
-                output = fp.read().strip()
-        except e:
-            pass
+        with open("/root/dos/LOG.TXT", "r") as fp:
+            output = fp.read().strip()
 
         return flask.jsonify(input=input_string, output=output)
 
 if __name__ == "__main__":
-    proxy.run(host='0.0.0.0', port=8080, threaded=False)
+    proxy.after_request(add_cors_headers)
+    proxy.run(host='0.0.0.0', port=int(os.getenv('PORT')), threaded=False)
