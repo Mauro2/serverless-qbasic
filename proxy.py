@@ -22,7 +22,7 @@ def run():
             fp.write("\"%s\"\n" % input_string)
 
         subprocess.call([
-            "dosbox", "./PRINT.EXE", "-c", "C:\\QBASIC.EXE /run C:\\MORSE.BAS > C:\\LOG.TXT", "-exit"
+            "dosbox", "./PRINT.EXE", "-c", "C:\\QBASIC.EXE /run C:\\PRIME.BAS > C:\\LOG.TXT", "-exit"
         ], cwd="/root/dos")
 
         output = "???"
@@ -36,4 +36,4 @@ def run():
         return flask.jsonify(input=input_string, output=output)
 
 if __name__ == "__main__":
-    proxy.run(host='0.0.0.0', port=8080)
+    proxy.run(host='0.0.0.0', port=8080, threaded=False)

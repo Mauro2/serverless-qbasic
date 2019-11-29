@@ -42,7 +42,7 @@ RUN mkdir -p /root/.dosbox
 COPY dosbox.conf "/root/.dosbox/dosbox-0.74.conf"
 
 # Program itself
-COPY MORSE.BAS "/root/dos/MORSE.BAS"
+COPY PRIME.BAS "/root/dos/PRIME.BAS"
 
 # The proxy
 RUN mkdir -p /root/proxy
