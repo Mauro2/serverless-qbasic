@@ -1,0 +1,115 @@
+html, body { height: 100%; }
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input {
+	color: transparent;
+	text-shadow: 0 0 0 gainsboro;
+  }
+
+  input:focus {
+	outline: none;
+}
+
+body {
+	background: #552583;
+	color: #FDB927;
+	text-align: center;
+	font-weight: bold;
+	overflow: hidden;
+}
+#normal div {
+	width: 100%;
+	margin: 0 auto;
+}
+.container {
+	position: relative;
+	margin: 0 auto;
+	max-width: -webkit-fill-available;
+	height: auto;
+	opacity: 1;
+	top: 40%;
+	margin-top: 130px;
+}
+#faltan {
+	font-family: 'Megrim', cursive;
+	padding-bottom: 21px;
+	font-size: 60px;
+}
+#contador {
+	font-family: 'Abril Fatface', cursive;
+	padding-bottom: 43px;
+	width: -webkit-fill-available;
+	text-align: center;
+	background: none;
+    outline: none;
+	border: 0px;
+	font-size: 400px; 
+	line-height: 261.6px;
+}
+#dias {
+	font-family: 'Megrim', cursive;
+	margin-top: 0px;
+	font-size: 60px;
+}
+#accepted {
+	height: 71px;
+	font-family: 'Megrim', cursive;
+	line-height: 71px;
+	white-space: nowrap;
+	margin-bottom: 11px;
+}
+
+#loading {
+	height: 71px;
+	font-family: 'Megrim', cursive;
+	line-height: 71px;
+	white-space: nowrap;
+	margin-bottom: 11px;
+}
+
+#rejected {
+	height: 71px;
+	font-family: 'Megrim', cursive;
+	line-height: 71px;
+	white-space: nowrap;
+	margin-bottom: 11px;
+}
+#separador img {
+	vertical-align: middle;
+	margin-top: 8px;
+	height: 25px;
+	line-height: 2px;
+}
+#fecha, #fecha2 {
+	font-family: 'Montserrat', sans-serif;
+	text-transform: uppercase!important;
+	margin-top: 0px;
+	margin-bottom: 3px;
+	font-size: 32px;
+	
+}
+#fecha2 { margin-top: 100px; }
+#motivo {
+	width: 40%!important;
+	font-size: 17px;
+}
+#motivo, #motivo2 {
+	font-family: 'Josefin Slab', serif;
+	text-transform: uppercase!important;
+	margin-top: 0px;
+}
+#feriado img {
+	margin-top: 32px;
+}
+
+#social {
+	float: right;
+	width: 95%;
+	margin-top: -50px;
+}
+
+
