@@ -10,19 +10,22 @@ class PrimeNumbers extends React.Component {
         };
         this.handleInput = this.handleInput.bind(this);
 		this.handleKeyDown = this.handleKeyDown.bind(this);
-		
 		this.c = 0
-		this.loadingTexts = ['Consultando al conocimiento ancestral...', 'Mauro me hago viejo como vos esperando...', 'Lo hubieras hecho en Go...', 'No era que los porteños andan apurados?'];
+		this.loadingTexts = ['Consultando al conocimiento ancestral...', 'Mauro me hago viejo como vos esperando...', 'Lo hubieras hecho en Go...', 'No era que en Buenos Aires andan apurados?'];
 	}
 
-	
-
+	cleanMessages = () => {
+		document.getElementById('accepted').style.display = 'none'
+		document.getElementById('rejected').style.display = 'none'
+		document.getElementById('loading').style.display = 'none'
+	}
 	handleInput = (event) => {
 		const target = event.target;
 		const name = target.value;
-		if (document.getElementById('accepted').style.display === 'block' || document.getElementById('rejected').style.display === 'block'){
-			document.getElementById('accepted').style.display = 'none'
-			document.getElementById('rejected').style.display = 'none'
+		if (document.getElementById('accepted').style.display === 'block' 
+		|| document.getElementById('rejected').style.display === 'block'
+		|| document.getElementById('loading').style.display === 'block'){
+			this.cleanMessages()
 		}
 		if (name !== ''){
 			this.setState({
@@ -32,8 +35,6 @@ class PrimeNumbers extends React.Component {
 			console.log("Not a valid input")
 		}
 	}
-
-
 	
 	loadingInfo = () => {
 		document.getElementById('accepted').style.display = 'none'
@@ -41,12 +42,16 @@ class PrimeNumbers extends React.Component {
 		document.getElementById('loading').style.display = 'block'
 		document.getElementById('loading').innerText = this.loadingTexts[this.c++ % this.loadingTexts.length ]
 	}
+
+	isPrimeNumber = () => {
+		document.getElementById('accepted').style.display = 'none'
+		document.getElementById('rejected').style.display = 'none'
+		document.getElementById('loading').style.display = 'block'
+		document.getElementById('loading').innerText = 'No tengo ni idea flaco :/'
+	}
 	
 	handleKeyDown = (e) => {
 		if (e.key === 'Enter') {
-			console.log('do validate');
-			console.log(this.state.primeNumber)
-
 			axios({ 
 				method: 'POST',
 				url: 'http://serverless-qbasic.centralus.azurecontainer.io/run',
@@ -85,7 +90,7 @@ class PrimeNumbers extends React.Component {
 					<input id="contador"style={{fontSize:400 + 'px', lineHeight: 261.6 + 'px'}} type="number" min="1" max="32000" onKeyDown={this.handleKeyDown} onInput={this.handleInput}></input>
 					<div id="dias" style={{fontSize: 60 + 'px'}}></div>
 					<div id="accepted" style={{height: 225 + 'px', lineHeight: 2 + 'px', color: 'green', fontSize: 90 + 'px'}}></div>
-					<div id="loading" style={{height: 225 + 'px', lineHeight: 2 + 'px', color: 'white', fontSize: 90 + 'px'}}></div>
+					<div id="loading" style={{height: 225 + 'px', lineHeight: 2 + 'px', color: 'white', fontSize: 69 + 'px'}}></div>
 					<div id="rejected" style={{height: 225 + 'px', lineHeight: 2 + 'px', color: 'red', fontSize: 90 + 'px'}}></div>
 					<div id="fecha" style={{fontSize:32 + 'px'}}></div>
 					<div id="motivo" style={{fontSize:17 + 'px'}}></div>
